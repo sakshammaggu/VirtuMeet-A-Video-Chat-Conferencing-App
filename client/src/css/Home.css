@@ -13,3 +13,30 @@
     max-width: 600px;
     margin: 0 auto;
 }
+
+@keyframes moveUpDown {
+    0%, 20%, 100% {
+      transform: translateY(0); /* Start and end at the same position */
+    }
+    10% {
+      transform: translateY(-20px); /* Move up */
+    }
+    30%, 50%, 70% {
+      transform: translateY(0); /* Stay still */
+    }
+    40% {
+      transform: translateY(-20px); /* Move up again */
+    }
+    60% {
+      transform: translateY(-20px); /* Move up again */
+    }
+    80% {
+      transform: translateY(0); /* Move down */
+    }
+  }
+
+.meetingThemePic{
+    height: 300px;
+    width: 400px;
+    animation: moveUpDown 6s ease infinite; /* Apply the animation */
+}
