@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <div className="home-page">
       <HomeTopSection />  {/* top section of the home page*/}
-
       <HomeMiddleSection /> {/* top section of the home page*/}
     </div>
   )
