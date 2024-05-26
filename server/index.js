@@ -1,6 +1,8 @@
-const express=require('express');
-const mongoose=require('mongoose');
-const dotenv=require('dotenv');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+import authRoutes from '../server/routes/auth.route.js';
 
 dotenv.config();
 
@@ -14,8 +16,10 @@ mongoose
     })
 
 const app=express();
+app.use(express.json());
 
 app.listen((3000), ()=>{
     console.log("Server is running at port 3000!");
 })
 
+app.use('/api/auth', authRoutes);
