@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
-import authRoutes from '../server/routes/auth.route.js';
+import authRoutes from './routes/auth.route.js';
 
 dotenv.config();
 
@@ -16,11 +17,9 @@ mongoose
     })
 
 const app=express();
-app.use(express.json());
 
-app.listen((3000), ()=>{
-    console.log("Server is running at port 3000!");
-})
+app.use(express.json());
+app.use(cors());
 
 app.use('/api/auth', authRoutes);
 
@@ -34,3 +33,7 @@ app.use((err, req, res, next)=>{
         message: message
     })
 });
+
+app.listen((3000), ()=>{
+    console.log("Server is running at port 3000!");
+})
