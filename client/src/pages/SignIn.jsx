@@ -2,11 +2,20 @@ import React, { useState } from 'react'
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react'
 import { Link, useNavigate } from 'react-router-dom'
 
+// redux
+import {useDispatch, useSelector} from 'react-redux';
+import {signInStart, signInSuccess, signInFailure} from '../redux/user/userSlice.js';
+
 export default function SignIn() {
   
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage]=useState(null);
-  const [loading, setLoading]=useState(false);
+
+  // const [errorMessage, setErrorMessage]=useState(null);
+  // const [loading, setLoading]=useState(false);
+  const {loading, error:errorMessage}=useSelector(state=>state.user);
+
+
+  const dispatch=useDispatch();
   const navigate=useNavigate();
 
   const handleChange=(e)=>{
@@ -17,12 +26,14 @@ export default function SignIn() {
     e.preventDefault();
 
     if (!formData.email || !formData.password){
-      return setErrorMessage('Please fill out all the details');
+      // return setErrorMessage('Please fill out all the details');
+      return dispatch(signInFailure('Please fill out all the details'));
     }
 
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      // setLoading(true);
+      // setErrorMessage(null);
+      dispatch(signInStart());
 
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
@@ -33,17 +44,20 @@ export default function SignIn() {
       const data = await res.json();
       
       if (data.success===false){
-        return setErrorMessage('User already exists');
+        // return setErrorMessage('User already exists');
+        return dispatch(signInFailure(data.message));
       }
 
-      setLoading(false);
+      // setLoading(false);
 
       if (res.ok){
+        dispatch(signInSuccess(data));
         navigate('/');
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
+      // setErrorMessage(error.message);
+      // setLoading(false);
+      dispatch(signInFailure(error.message));
     }
   };
 
