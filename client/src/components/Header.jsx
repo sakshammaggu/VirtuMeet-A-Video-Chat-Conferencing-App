@@ -40,7 +40,7 @@ export default function Header() {
                                 <span className='block text-sm font-medium'>{currentUser.email}</span>
                             </Dropdown.Header>
 
-                            <Link to='/profile'>
+                            <Link to='/profile?tab=profile'>
                                 <Dropdown.Item>Profile</Dropdown.Item>
                             </Link>
 
