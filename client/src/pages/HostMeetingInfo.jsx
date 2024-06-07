@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Label, TextInput } from 'flowbite-react';
 
 export default function HostMeetingInfo() {
+  const [formData, setFormData] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [showMeetingWindow, setShowMeetingWindow] = useState(false);
+
+  const handleChange=(e)=>{
+    setFormData({...formData, [e.target.id]:e.target.value.trim()});
+  };
+
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    
+    if (!formData.meetingUserName || !formData.meetingPassword){
+      return setErrorMessage('Please fill out all the details');
+    }
+
+    try {
+      const res=await fetch('/api/meeting/host', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data=await res.json();
+      setShowMeetingWindow(true);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
   return (
     <div className='min-h-screen mt-36'>
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-14">
@@ -21,18 +50,18 @@ export default function HostMeetingInfo() {
         </div>
 
         <div className="flex-1">
-          <form className='flex flex-col gap-4'>
+          <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
             <div>
               <Label value="Set Your Meeting Username:" />
-              <TextInput type='text' placeholder='Username' id='userName' />
+              <TextInput type='text' placeholder='Username' id='meetingUserName' onChange={handleChange}/>
             </div>
 
             <div>
               <Label value="Set Your Meeting Password:" />
-              <TextInput type='password' placeholder='Password' id='password' />
+              <TextInput type='password' placeholder='Password' id='meetingPassword' onChange={handleChange}/>
             </div>
 
-            <Button gradientDuoTone='purpleToPink'>
+            <Button gradientDuoTone='purpleToPink' type='submit'>
               Host A New Meeting
             </Button>
           </form>
