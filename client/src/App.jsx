@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import About from './pages/About';
-import Meeting from './pages/Meeting';
+import HostMeetingInfo from './pages/HostMeetingInfo';
 import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/meeting" element={<Meeting />} />
+        <Route path="/host-meeting-info" element={<HostMeetingInfo />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />

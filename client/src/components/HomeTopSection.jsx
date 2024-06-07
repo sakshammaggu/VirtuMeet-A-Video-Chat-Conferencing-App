@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/HomeTopSection.css';
 import meetingThemePic from '../assets/images/meetingThemePic.jpg'
 
-import { Button } from "flowbite-react";
+import HostMeetingButton from './HostMeetingButton';
 
 export default function HomeTopSection() {
   return (
@@ -27,7 +27,7 @@ export default function HomeTopSection() {
             <br />
 
             <div className="flex flex-wrap gap-2 mx-6 my-4">
-                <Button color="dark">Host A Meeting</Button>
+                <HostMeetingButton />
                 
                 <form>
                     <div className="relative flex items-center">
