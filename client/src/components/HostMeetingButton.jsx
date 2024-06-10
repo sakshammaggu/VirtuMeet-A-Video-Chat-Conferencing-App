@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function HostMeetingButton() {
     const navigate=useNavigate();
     const handleClick=()=>{
-        navigate('/host-meeting-info');
+        navigate('/meetings');
     };
 
     return (

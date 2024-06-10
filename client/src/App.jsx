@@ -8,9 +8,11 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import About from './pages/About';
-import HostMeetingInfo from './pages/HostMeetingInfo';
 import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
+import Meetings from './pages/Meetings';
+
+import HostMeetingInfo from './pages/HostMeetingInfo';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
+        <Route path="/meetings" element={<Meetings />} />
+        
         <Route path="/host-meeting-info" element={<HostMeetingInfo />} />
 
         <Route element={<PrivateRoute />}>

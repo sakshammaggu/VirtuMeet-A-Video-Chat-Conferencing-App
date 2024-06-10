@@ -81,7 +81,7 @@ export default function Header() {
                 </Navbar.Link>
                     
                 <Navbar.Link>
-                    <Link to='/meeting'>Meeting</Link>
+                    <Link to='/meetings'>Meetings</Link>
                 </Navbar.Link>
                 
             </Navbar.Collapse>
