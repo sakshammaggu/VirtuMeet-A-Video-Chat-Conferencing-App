@@ -25,8 +25,11 @@ export default function MeetingsDisplaySection() {
     };
 
     return (
-        <div className='flex flex-col md:flex-row h-screen'>
-            <MeetingsSidebar onTabChange={setCurrentTab} />
+        <div className='flex flex-col md:flex-row'>
+            <div className="lg:h-screen md:w-56">
+                <MeetingsSidebar onTabChange={setCurrentTab} />
+            </div>
+            
             {renderContent()}
         </div>
     );
