@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Label, Modal, TextInput } from 'flowbite-react';
+import MeetingHostButton from './MeetingHostButton';
 
 export default function MeetingModal({openModal, toggleModal}) {
     const [meetingUsername, setMeetingUsername] = useState('');
@@ -36,7 +37,7 @@ export default function MeetingModal({openModal, toggleModal}) {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button className="w-full sm:w-auto" onClick={toggleModal}>Host Meeting</Button>
+                <MeetingHostButton toggleModal={toggleModal}/>
             </Modal.Footer>
         </Modal>
     )
